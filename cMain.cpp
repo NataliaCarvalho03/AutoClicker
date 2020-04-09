@@ -5,7 +5,6 @@ using namespace std;
 bool clicking;
 int x;
 int y;
-
 static void startclicker()
 {
 	while (true)
@@ -62,6 +61,36 @@ static void startclicker()
 				}
 			}
 		}
+
+        if (GetAsyncKeyState(VK_NUMPAD4))
+        {
+            //Define the number of clicksw to execute
+            int number_of_clicks, aux = 0, miliseconds;
+
+            cout << "Enter the number of clicks you want: ";
+            cin >> number_of_clicks;
+
+            cout << "Enter the time between clicks in miliseconds: ";
+            cin >> miliseconds;
+
+            while (true){
+
+                //SetCursorPos(x, y);
+				mouse_event(MOUSEEVENTF_LEFTDOWN, x, y, 0, 0);
+				mouse_event(MOUSEEVENTF_LEFTUP, x, y, 0, 0);
+
+                aux++;
+				cout << aux << endl;
+
+                if (aux == number_of_clicks){
+                    break;
+                }else{
+                    Sleep(miliseconds);
+                }
+
+            }
+            
+        }
 		
 	}
 }
@@ -75,6 +104,7 @@ static void init()
 	cout << "NumPad1 = save mouse position" << endl;
 	cout << "NumPad2 = activate autoclicker on saved position" << endl;
 	cout << "NumPad3 = STOP" << endl;
+    cout << "NumPad4 = Define Number of Clicks and interval time between each click (miliseconds)" << endl;
 	cout << "Escape  = Close" << endl << endl << endl;
 	cout << " " << endl << endl;
 	cout << "======================================================" << endl;
@@ -85,8 +115,8 @@ static void init()
 
 
 
-void main()
+int  main()
 {
 	init();
+    return 0;
 }
-
